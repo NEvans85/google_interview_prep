@@ -70,13 +70,25 @@ percelated down the tree until the heap order property is restored.
             else:
                 return idx * 2 + 1
 
-# 
+"""
+The buildHeap method assigns the heap's store to the input list of numbers, then 
+calls percDown on the first half of the list. Only the first half needs to be 
+addressed as all others represent leaf nodes in a complete binary tree. This method
+leaves the heap in a state satisfying the heap order property.
+"""
             
-    def buildHeap(self, numList):
-        idx = len(numList) // 2
-        self.currentSize = len(numList)
-        self.store = [0] + numList[:]
-        while (i > 0):
-            self.percDown(i)
-            i -= 1
-            
+    def buildHeap(self, iList):
+        idx = len(iList) // 2
+        self.currentSize = len(iList)
+        self.store = [0] + iList[:]
+        while (idx > 0):
+            self.percDown(idx)
+            idx -= 1
+
+def heapSort(iList):
+    data = BinaryHeap()
+    data.buildHeap(iList)
+    result = []
+    while len(result) < len(iList):
+        result.append(data.delMin())
+    return result
