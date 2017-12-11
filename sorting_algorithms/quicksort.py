@@ -17,7 +17,7 @@ def quicksort(iList):
     if len(iList) <= 1:
         return iList
     else:
-        pivot = arr[0]
+        pivot = iList[0]
         for el in iList:
             if el < pivot:
                 left.append(el)
