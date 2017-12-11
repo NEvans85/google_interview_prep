@@ -17,11 +17,10 @@ class BinaryHeap:
         self.store = [0]
         self.currentSize = 0
 
-"""        
-Insert appends the next value to the end of the store then percelates the value 
-up until the heap satisfies the heap order property (any value is greater than 
-its parent).
-"""
+      
+# Insert appends the next value to the end of the store then percelates the value 
+# up until the heap satisfies the heap order property (any value is greater than 
+# its parent).
 
     def insert(self, value):
         self.store.append(value)
@@ -35,22 +34,21 @@ its parent).
                 self.store[idx // 2] = self.store[idx]
                 self.store[idx] = temp
             idx = idx // 2
-
-"""            
-By maintaining a balanced tree satisfying the heap order property, findng the 
-minimum value is simple it will always be the root and will always be at index 1 
-of the store. A delMin method is necessary for heapsort. It works by removing 
-the minimum value and swapping the last element into the root of the tree, which
-will destroy compliance of the heap order property. Then the new root value is
-percelated down the tree until the heap order property is restored.
-"""
+        
+# By maintaining a balanced tree satisfying the heap order property, findng the 
+# minimum value is simple it will always be the root and will always be at index 1 
+# of the store. A delMin method is necessary for heapsort. It works by removing 
+# the minimum value and swapping the last element into the root of the tree, which
+# will destroy compliance of the heap order property. Then the new root value is
+# percelated down the tree until the heap order property is restored.
 
     def delMin(self):
-        minValue = store[1]
-        store[1] = store[self.currentSize]
+        minValue = self.store[1]
+        self.store[1] = self.store[self.currentSize]
         self.currentSize -= 1
         self.store.pop()
         self.percDown(1)
+        return minValue
     
     def percDown(self, idx):
         while idx * 2 <= self.currentSize:
@@ -70,12 +68,10 @@ percelated down the tree until the heap order property is restored.
             else:
                 return idx * 2 + 1
 
-"""
-The buildHeap method assigns the heap's store to the input list of numbers, then 
-calls percDown on the first half of the list. Only the first half needs to be 
-addressed as all others represent leaf nodes in a complete binary tree. This method
-leaves the heap in a state satisfying the heap order property.
-"""
+# The buildHeap method assigns the heap's store to the input list of numbers, then 
+# calls percDown on the first half of the list. Only the first half needs to be 
+# addressed as all others represent leaf nodes in a complete binary tree. This method
+# leaves the heap in a state satisfying the heap order property.
             
     def buildHeap(self, iList):
         idx = len(iList) // 2
