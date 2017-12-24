@@ -1,6 +1,6 @@
 class Node:
     def __init__(self, data):
-        self.data = value
+        self.data = data
         self.children = []
 
     def addChild(self, data):
@@ -13,6 +13,18 @@ class Node:
             if child.data == data:
                 return child
         return False
+
+    def findSuffixes(self):
+        queue = [[child, ""] for child in self.children]
+        results = []
+        while len(queue) > 0:
+            currNode, currStr = queue.pop(0)
+            if currNode.data == "$":
+                results.append(currStr)
+            else:
+                nextStr = currStr + currNode.data
+                queue += [[child, nextStr] for child in currNode.children]
+        return results
 
 class Trie:
     def __init__(self, root = Node("_")):
@@ -27,9 +39,18 @@ class Trie:
                 currNode = nextNode
             else:
                 currNode = currNode.addChild(ch)
+
     def addWordList(self, wordList):
         for word in wordList:
             self.addWord(word)
 
-    def findWords(self, s):
-        
+    def findWords(self, prefix):
+        currNode = self.root
+        for ch in prefix:
+            nextNode = currNode.getChild(ch)
+            if nextNode:
+                currNode = nextNode
+            else:
+                return []
+        suffixes = currNode.findSuffixes()
+        return [prefix + suffix for suffix in suffixes]
