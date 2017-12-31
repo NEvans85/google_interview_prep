@@ -7,6 +7,9 @@ branches are rotated around that node. Rotations are made when any
 modification to the tree results in this inbalance.
 """
 
+# This implementation could be optimized by storing the height on the
+# Node rather than calculating height each time.
+
 class AVLTree:
     def __init__(self):
         self.root = None
