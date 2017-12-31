@@ -11,7 +11,9 @@ class AVLTree:
     def __init__(self):
         self.root = None
 
-    def insert(self, value, root = self.root):
+    def insert(self, value, root = None):
+        if not root:
+            root = self.root
         if root:
             if root.data < value:
                 if root.right:
