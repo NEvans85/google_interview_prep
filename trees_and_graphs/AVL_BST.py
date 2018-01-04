@@ -32,6 +32,22 @@ class AVLTree:
         else:
             self.root = self.Node(value)
 
+    def delete(self, value):
+        toRemove = self.findNode(value)
+        if toRemove:
+            
+
+    def findNode(self, value):
+        currNode = self.root
+        while currNode:
+            if currNode.data == value:
+                return currNode
+            elif value > currNode.data:
+                currNode = currNode.right
+            else:
+                currNode = currNode.left
+        return False
+
     def balance(self, root):
         diff = root.heightDiff()
         if diff > 1:
